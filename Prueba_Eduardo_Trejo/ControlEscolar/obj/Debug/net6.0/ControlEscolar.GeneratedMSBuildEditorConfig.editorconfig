@@ -1,0 +1,107 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ControlEscolar
+build_property.RootNamespace = ControlEscolar
+build_property.ProjectDir = C:\Users\HP\Documents\NimbusLabs\Prueba_Nimbuslabs\Prueba_Eduardo_Trejo\ControlEscolar\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\HP\Documents\NimbusLabs\Prueba_Nimbuslabs\Prueba_Eduardo_Trejo\ControlEscolar
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Alumno/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5vXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Alumno/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5vXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Alumno/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5vXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Alumno/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5vXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Alumno/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5vXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/MateriasAlumno/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNBbHVtbm9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/MateriasAlumno/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNBbHVtbm9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/MateriasAlumno/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNBbHVtbm9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/MateriasAlumno/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNBbHVtbm9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/MateriasAlumno/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNBbHVtbm9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Materia/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Materia/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Materia/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Materia/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Materia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/NimbusLabs/Prueba_Nimbuslabs/Prueba_Eduardo_Trejo/ControlEscolar/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-hcjksb1tdh
