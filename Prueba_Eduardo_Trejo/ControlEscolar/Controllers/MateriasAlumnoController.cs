@@ -9,6 +9,7 @@ using ControlEscolar.Models.Context;
 using ControlEscolar.Models.Entidades;
 using ControlEscolar.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ControlEscolar.Controllers
 {
@@ -28,41 +29,41 @@ namespace ControlEscolar.Controllers
         // GET: MateriasAlumno
         public async Task<IActionResult> Index()
         {
-            List<MateriasAlumno> lstMateriasAlumnos = await _NMateriasAlumno.Consultar();
             List<Alumno> lstAlumnos = await _NAlumno.Consultar();
-            List<Materia> lstMaterias = await _NMateria.Consultar();
+            List<Cardex> lstCardex = new List<Cardex>();
 
-            var listadoIndex =
-                from caso in lstMateriasAlumnos
-                join alumno in lstAlumnos on caso.IdAlumno equals alumno.Id
-                join materia in lstMaterias on caso.IdMateria equals materia.Id
-                group new {alumno, materia} by new { alumno.Id, alumno.Nombre, alumno.Apellidos, alumno.Edad } into grupo
-                select new
-                {
-                    Id = grupo.Key.Id,
-                    Nombre = grupo.Key.Nombre,
-                    Apellidos = grupo.Key.Apellidos,
-                    Edad = grupo.Key.Edad,
-                    Creditos = grupo.Sum(g => g.materia.Creditos)
-                };
-            string json = JsonConvert.SerializeObject(listadoIndex);
-            List<Cardex> lstCardex = JsonConvert.DeserializeObject<List<Cardex>>(json);
+            foreach(Alumno oAlumno in lstAlumnos)
+            {
+                Cardex oCardex = await ConsultarCardex(oAlumno.Id);
+                lstCardex.Add(oCardex);
+            }
             return View(lstCardex);
         }
 
         // GET: MateriasAlumno/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            MateriasAlumno oMateriasAlumno = await _NMateriasAlumno.Consultar(id);
-            return View(oMateriasAlumno);
+            Cardex oCardex = await ConsultarCardex(id);
+            return View(oCardex);
         }
 
         // GET: MateriasAlumno/Create
         public async Task<IActionResult> Create()
         {
-            ViewData["IdAlumno"] = new SelectList(await _NAlumno.Consultar(), "Id", "Nombre");
-            ViewData["IdMateria"] = new SelectList(await _NMateria.Consultar(), "Id", "Nombre");
-            return View();
+            List<Materia> lstMaterias = await _NMateria.Consultar();
+            Cardex oCardex = new Cardex();
+
+            foreach(Materia oMateria in lstMaterias)
+            {
+                MateriasEstatus oMateriasEstatus = new MateriasEstatus();
+                oMateriasEstatus.Id = oMateria.Id;
+                oMateriasEstatus.Nombre = oMateria.Nombre;
+                oMateriasEstatus.Creditos = oMateria.Creditos;
+                oMateriasEstatus.Estatus = false;
+                oCardex.Materias.Add(oMateriasEstatus);
+            }
+            
+            return View(oCardex);
         }
 
         // POST: MateriasAlumno/Create
@@ -70,25 +71,48 @@ namespace ControlEscolar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdAlumno,IdMateria")] MateriasAlumno oMateriasAlumno)
+        public async Task<IActionResult> Create([Bind("Nombre,Apellidos,Edad,Materias")] Cardex oCardex)
         {
+            List<MateriasAlumno> lstMateriasAlumno = await _NMateriasAlumno.Consultar();
             if (ModelState.IsValid)
             {
-                await _NMateriasAlumno.Agregar(oMateriasAlumno);
+                Alumno oAlumno = new Alumno();
+                oAlumno.Nombre = oCardex.Nombre;
+                oAlumno.Apellidos = oCardex.Apellidos;
+                oAlumno.Edad = oCardex.Edad;
+                Alumno oAlumnoRespuesta = await _NAlumno.Agregar(oAlumno);
+
+                MateriasAlumno oMateriasAlumno = new MateriasAlumno();
+                oMateriasAlumno.IdAlumno = oAlumnoRespuesta.Id;
+                foreach(MateriasEstatus oMateria in oCardex.Materias)
+                {
+                    if (oMateria.Estatus == true)
+                    {
+                        if (lstMateriasAlumno.Find(x=> x.IdAlumno == oMateriasAlumno.Id && x.IdMateria == oMateria.Id) == null)
+                        {
+                            oMateriasAlumno.IdMateria = oMateria.Id;
+                            await _NMateriasAlumno.Agregar(oMateriasAlumno);
+                        }
+                    }
+                    else
+                    {
+                        if (lstMateriasAlumno.Find(x => x.IdAlumno == oMateriasAlumno.Id && x.IdMateria == oMateria.Id) != null)
+                        {
+                            MateriasAlumno oMateriasAlumnoEliminar = lstMateriasAlumno.Find(x => x.IdAlumno == oMateriasAlumno.Id && x.IdMateria == oMateria.Id);
+                            await _NMateriasAlumno.Eliminar(oMateriasAlumnoEliminar.Id);
+                        }
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAlumno"] = new SelectList(await _NAlumno.Consultar(), "Id", "Nombre");
-            ViewData["IdMateria"] = new SelectList(await _NMateria.Consultar(), "Id", "Nombre");
-            return View(oMateriasAlumno);
+            return View(oCardex);
         }
 
         // GET: MateriasAlumno/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            MateriasAlumno oMateriasAlumno = await _NMateriasAlumno.Consultar(id);
-            ViewData["IdAlumno"] = new SelectList(await _NAlumno.Consultar(), "Id", "Nombre");
-            ViewData["IdMateria"] = new SelectList(await _NMateria.Consultar(), "Id", "Nombre");
-            return View(oMateriasAlumno);
+            Cardex oCardex = await ConsultarCardex(id);
+            return View(oCardex);
         }
 
         // POST: MateriasAlumno/Edit/5
@@ -96,23 +120,49 @@ namespace ControlEscolar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdAlumno,IdMateria")] MateriasAlumno oMateriasAlumno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellidos,Edad,Materias")] Cardex oCardex)
         {
+            List<MateriasAlumno> lstMateriasAlumno = await _NMateriasAlumno.Consultar();
             if (ModelState.IsValid)
             {
-                await _NMateriasAlumno.Actualizar(oMateriasAlumno);
+                Alumno oAlumno = new Alumno();
+                oAlumno.Id = oCardex.Id;
+                oAlumno.Nombre = oCardex.Nombre;
+                oAlumno.Apellidos = oCardex.Apellidos;
+                oAlumno.Edad = oCardex.Edad;
+                await _NAlumno.Actualizar(oAlumno);
+
+                MateriasAlumno oMateriasAlumno = new MateriasAlumno();
+                oMateriasAlumno.IdAlumno = oCardex.Id;
+                foreach (MateriasEstatus oMateria in oCardex.Materias)
+                {
+                    if (oMateria.Estatus == true)
+                    {
+                        if (lstMateriasAlumno.Find(x => x.IdAlumno == oMateriasAlumno.IdAlumno && x.IdMateria == oMateria.Id) == null)
+                        {
+                            oMateriasAlumno.IdMateria = oMateria.Id;
+                            await _NMateriasAlumno.Agregar(oMateriasAlumno);
+                        }
+                    }
+                    else
+                    {
+                        if (lstMateriasAlumno.Find(x => x.IdAlumno == oMateriasAlumno.IdAlumno && x.IdMateria == oMateria.Id) != null)
+                        {
+                            MateriasAlumno oMateriasAlumnoEliminar = lstMateriasAlumno.Find(x => x.IdAlumno == oMateriasAlumno.IdAlumno && x.IdMateria == oMateria.Id);
+                            await _NMateriasAlumno.Eliminar(oMateriasAlumnoEliminar.Id);
+                        }
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAlumno"] = new SelectList(await _NAlumno.Consultar(), "Id", "Nombre", oMateriasAlumno.IdAlumno);
-            ViewData["IdMateria"] = new SelectList(await _NMateria.Consultar(), "Id", "Nombre", oMateriasAlumno.IdMateria);
-            return View(oMateriasAlumno);
+            return View(oCardex);
         }
 
         // GET: MateriasAlumno/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            MateriasAlumno oMateriasAlumno = await _NMateriasAlumno.Consultar(id);
-            return View(oMateriasAlumno);
+            Cardex oCardex = await ConsultarCardex(id);
+            return View(oCardex);
         }
 
         // POST: MateriasAlumno/Delete/5
@@ -120,8 +170,40 @@ namespace ControlEscolar.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _NMateriasAlumno.Eliminar(id);
+            await _NAlumno.Eliminar(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<Cardex> ConsultarCardex(int id)
+        {
+            Alumno oAlumno = await _NAlumno.Consultar(id);
+            Cardex oCardex = new Cardex();
+            List<MateriasAlumno> lstMateriasAlumnos = await _NMateriasAlumno.Consultar();
+            List<Materia> lstMaterias = await _NMateria.Consultar();
+
+            oCardex.Id = oAlumno.Id;
+            oCardex.Nombre = oAlumno.Nombre;
+            oCardex.Apellidos = oAlumno.Apellidos;
+            oCardex.Edad = oAlumno.Edad;
+
+            foreach (Materia materia in lstMaterias)
+            {
+                MateriasEstatus oMateriaEstatus = new MateriasEstatus();
+                oMateriaEstatus.Id = materia.Id;
+                oMateriaEstatus.Nombre = materia.Nombre;
+                oMateriaEstatus.Creditos = materia.Creditos;
+                oMateriaEstatus.Estatus = false;
+                foreach (MateriasAlumno registro in lstMateriasAlumnos)
+                {
+                    if (registro.IdAlumno == id && registro.IdMateria == materia.Id)
+                    {
+                        oMateriaEstatus.Estatus = true;
+                        oCardex.Creditos += materia.Creditos;
+                    }
+                }
+                oCardex.Materias.Add(oMateriaEstatus);
+            }
+            return oCardex;
         }
     }
 }

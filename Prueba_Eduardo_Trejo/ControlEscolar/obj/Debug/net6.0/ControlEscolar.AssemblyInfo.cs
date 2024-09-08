@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ControlEscolar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41f311e2cedc83e8c357d801f6fa5464aacba49c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8e12e2748812409e2ab77e7923074988ad8c24b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ControlEscolar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ControlEscolar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

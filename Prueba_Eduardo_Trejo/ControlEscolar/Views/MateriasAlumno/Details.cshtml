@@ -1,4 +1,4 @@
-﻿@model ControlEscolar.Models.Entidades.MateriasAlumno
+﻿@model ControlEscolar.Models.Entidades.Cardex
 
 @{
     ViewData["Title"] = "Details";
@@ -10,18 +10,39 @@
     <h4>MateriasAlumno</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdAlumnoNavigation)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdAlumnoNavigation.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdMateriaNavigation)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Apellidos)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdMateriaNavigation.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Apellidos)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Edad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Edad)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Creditos)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Creditos)
+        </dd>
+        @foreach (var item in Model.Materias)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.Estatus)
+            </dd>
+        }
     </dl>
 </div>
 <div>

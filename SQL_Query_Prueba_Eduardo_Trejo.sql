@@ -69,3 +69,16 @@ GO
 DROP TABLE Alumno
 DROP TABLE Materia
 DROP TABLE Materias_Alumno
+GO
+
+SELECT Alumno.Id, Alumno.Nombre, Alumno.Apellidos, Alumno.Edad, SUM(Materia.Creditos)
+FROM Materias_Alumno
+INNER JOIN Alumno ON Materias_Alumno.IdAlumno = Alumno.Id
+INNER JOIN Materia ON Materias_Alumno.IdMateria = Materia.Id
+GROUP BY Alumno.Id, Alumno.Nombre, Alumno.Apellidos, Alumno.Edad
+GO
+
+SELECT 
+FROM Materias_Alumno
+INNER JOIN Alumno ON Materias_Alumno.IdAlumno = Alumno.Id
+INNER JOIN Materia ON Materias_Alumno.IdMateria = Materia.Id

@@ -1,4 +1,4 @@
-﻿@model ControlEscolar.Models.Entidades.MateriasAlumno
+﻿@model ControlEscolar.Models.Entidades.Cardex
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,15 +14,34 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="IdAlumno" class="control-label"></label>
-                <select asp-for="IdAlumno" class="form-control" asp-items="ViewBag.IdAlumno"></select>
-                <span asp-validation-for="IdAlumno" class="text-danger"></span>
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control"></input>
             </div>
             <div class="form-group">
-                <label asp-for="IdMateria" class="control-label"></label>
-                <select asp-for="IdMateria" class="form-control" asp-items="ViewBag.IdMateria"></select>
-                <span asp-validation-for="IdMateria" class="text-danger"></span>
+                <label asp-for="Apellidos" class="control-label"></label>
+                <input asp-for="Apellidos" class="form-control"></input>
             </div>
+            <div class="form-group">
+                <label asp-for="Edad" class="control-label"></label>
+                <input asp-for="Edad" class="form-control"></input>
+            </div>
+            @for (int i = 0; i < Model.Materias.Count; i++)
+            {
+                <div class="form-group">
+                    <label>@Model.Materias[i].Nombre</label>
+                    <input asp-for="Materias[i].Estatus" class="form-chech-input" type="checkbox"></input>
+
+                    <input asp-for="Materias[i].Id" type="hidden" />
+                    <input asp-for="Materias[i].Nombre" type="hidden" />
+                    <input asp-for="Materias[i].Creditos" type="hidden" />
+                </div>
+            }
+
+            <div class="form-group">
+                <label>Créditos</label>
+                <input class="form-control"></input>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
