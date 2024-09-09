@@ -26,9 +26,10 @@
             </div>
             @for (int i = 0; i < Model.Materias.Count; i++)
             {
+
                 <div class="form-group">
                     <label>@Model.Materias[i].Nombre</label>
-                    <input asp-for="Materias[i].Estatus" class="form-chech-input" type="checkbox"></input>
+                    <input asp-for="Materias[i].Estatus" class="form-chech-input" onchange="algoCambio(this, @i)" type="checkbox"></input>
 
                     <input asp-for="Materias[i].Id" type="hidden" />
                     <input asp-for="Materias[i].Nombre" type="hidden" />
@@ -56,4 +57,22 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        function algoCambio(checkbox, index) {
+            // Aquí puedes manejar el cambio de estado del checkbox.
+            console.log("Checkbox en la posición " + index + " cambiado. Estado: " + checkbox.checked);
+
+            // Recolectar todas las materias con status en true.
+            let checkboxes = document.querySelectorAll('.form-check-input');
+            let materiasConEstatusTrue = [];
+
+            checkboxes.forEach((checkbox, i) => {
+                if (checkbox.checked) {
+                    materiasConEstatusTrue.push(i); // O cualquier otra información que necesites.
+                }
+            });
+
+            console.log("Materias con estatus en true: ", materiasConEstatusTrue);
+        }
+    </script>
 }

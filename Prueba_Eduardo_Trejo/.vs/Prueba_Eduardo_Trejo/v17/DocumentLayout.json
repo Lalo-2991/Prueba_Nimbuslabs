@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\HP\\Documents\\NimbusLabs\\Prueba_Nimbuslabs\\Prueba_Eduardo_Trejo\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5D9057F4-184E-41ED-99F9-0AFD483E0D0F}|ControlEscolar\\ControlEscolar.csproj|c:\\users\\hp\\documents\\nimbuslabs\\prueba_nimbuslabs\\prueba_eduardo_trejo\\controlescolar\\views\\materiasalumno\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D9057F4-184E-41ED-99F9-0AFD483E0D0F}|ControlEscolar\\ControlEscolar.csproj|solutionrelative:controlescolar\\views\\materiasalumno\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\NimbusLabs\\Prueba_Nimbuslabs\\Prueba_Eduardo_Trejo\\ControlEscolar\\Views\\MateriasAlumno\\Create.cshtml",
+              "RelativeDocumentMoniker": "ControlEscolar\\Views\\MateriasAlumno\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\NimbusLabs\\Prueba_Nimbuslabs\\Prueba_Eduardo_Trejo\\ControlEscolar\\Views\\MateriasAlumno\\Create.cshtml",
+              "RelativeToolTip": "ControlEscolar\\Views\\MateriasAlumno\\Create.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACQAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-08T20:24:27.369Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
