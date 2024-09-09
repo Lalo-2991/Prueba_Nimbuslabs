@@ -1,12 +1,12 @@
-﻿@model ControlEscolar.Models.Entidades.Cardex
+﻿@model ControlEscolar.Models.Entidades.Kardex
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
-<h4>MateriasAlumno</h4>
+<h4>Kardex Alumno</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,45 +14,74 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
+                <label asp-for="Nombre" class="control-label fw-bold"></label>
                 <input asp-for="Nombre" class="form-control"></input>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Apellidos" class="control-label"></label>
+                <label asp-for="Apellidos" class="control-label fw-bold"></label>
                 <input asp-for="Apellidos" class="form-control"></input>
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Edad" class="control-label"></label>
+                <label asp-for="Edad" class="control-label fw-bold"></label>
                 <input asp-for="Edad" class="form-control"></input>
+                <span asp-validation-for="Edad" class="text-danger"></span>
             </div>
-            @for (int i = 0; i < Model.Materias.Count; i++)
-            {
-                <div class="form-group">
-                    <label>@Model.Materias[i].Nombre</label>
-                    <input asp-for="Materias[i].Estatus" class="form-chech-input" type="checkbox"></input>
+            <br></br>
+            <div class="row">
+                <div class="col-4">
+                    <label class="text-center fw-bold fs-5">Materias</label>
+                    @for (int i = 0; i < Model.Materias.Count; i++)
+                    {
+                        <div class="form-group">
+                            <input asp-for="Materias[i].Estatus" class="form-chech-input" data-creditos="@Model.Materias[i].Creditos" type="checkbox"></input>
+                            <label>@Model.Materias[i].Nombre</label>
 
-                    <input asp-for="Materias[i].Id" type="hidden" />
-                    <input asp-for="Materias[i].Nombre" type="hidden" />
-                    <input asp-for="Materias[i].Creditos" type="hidden" />
+                            <input asp-for="Materias[i].Id" type="hidden" />
+                            <input asp-for="Materias[i].Nombre" type="hidden" />
+                            <input asp-for="Materias[i].Creditos" type="hidden" />
+                        </div>
+                    }
+
                 </div>
-            }
-
-            <div class="form-group">
-                <label>Créditos</label>
-                <input class="form-control"></input>
+                <div class="col-8 d-flex justify-content-center align-content-center">
+                    <div class="form-group">
+                        <label class=" text-center fw-bold fs-5">Créditos</label>
+                        <p id="pCreditos" class="text-center fw-bold fs-4 my-3 py-3 border border-2">@Model.Creditos</p>
+                    </div>
+                </div>
             </div>
 
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" /> |
+                <a asp-action="Index">Regresar a listado de alumnos</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+    <script>
+        $(document).ready(function () {
+            $('.form-chech-input').change(function () {
+                var total = 0;
+                $('.form-chech-input:checked').each(function () {
+                    total += parseFloat($(this).data('creditos'));
+                });
+                console.log(total);
+                $('#pCreditos').text(total);
+            });
+        });
+
+    </script>
 }

@@ -1,14 +1,13 @@
-﻿@model ControlEscolar.Models.Entidades.Cardex
+﻿@model ControlEscolar.Models.Entidades.Kardex
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Estás seguro de eliminar el Kardex de @Model.Nombre?</h3>
 <div>
-    <h4>MateriasAlumno</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -29,26 +28,27 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Edad)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Creditos)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Creditos)
-        </dd>
-        @foreach (var item in Model.Materias)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.Estatus)
-            </dd>
-        }
     </dl>
-    
+    <div class="row">
+        <div class="col-2">
+            <label class="text-center fw-bold fs-5">Materias</label>
+            @foreach (var item in Model.Materias)
+            {
+                <div>
+                    @Html.DisplayFor(modelItem => item.Estatus)
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </div>
+            }
+        </div>
+        <div class="col-3">
+            <p class="text-center fw-bold fs-5">Créditos</p>
+            <p class="text-center fw-bold fs-4 my-3 py-3 border border-2">@Model.Creditos</p>
+        </div>
+    </div>
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar a listado de alumnos</a>
     </form>
 </div>

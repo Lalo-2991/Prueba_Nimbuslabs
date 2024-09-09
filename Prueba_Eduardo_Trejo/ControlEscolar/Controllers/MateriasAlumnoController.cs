@@ -30,28 +30,28 @@ namespace ControlEscolar.Controllers
         public async Task<IActionResult> Index()
         {
             List<Alumno> lstAlumnos = await _NAlumno.Consultar();
-            List<Cardex> lstCardex = new List<Cardex>();
+            List<Kardex> lstKardex = new List<Kardex>();
 
             foreach(Alumno oAlumno in lstAlumnos)
             {
-                Cardex oCardex = await ConsultarCardex(oAlumno.Id);
-                lstCardex.Add(oCardex);
+                Kardex oKardex = await ConsultarKardex(oAlumno.Id);
+                lstKardex.Add(oKardex);
             }
-            return View(lstCardex);
+            return View(lstKardex);
         }
 
         // GET: MateriasAlumno/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            Cardex oCardex = await ConsultarCardex(id);
-            return View(oCardex);
+            Kardex oKardex = await ConsultarKardex(id);
+            return View(oKardex);
         }
 
         // GET: MateriasAlumno/Create
         public async Task<IActionResult> Create()
         {
             List<Materia> lstMaterias = await _NMateria.Consultar();
-            Cardex oCardex = new Cardex();
+            Kardex oKardex = new Kardex();
 
             foreach(Materia oMateria in lstMaterias)
             {
@@ -60,10 +60,10 @@ namespace ControlEscolar.Controllers
                 oMateriasEstatus.Nombre = oMateria.Nombre;
                 oMateriasEstatus.Creditos = oMateria.Creditos;
                 oMateriasEstatus.Estatus = false;
-                oCardex.Materias.Add(oMateriasEstatus);
+                oKardex.Materias.Add(oMateriasEstatus);
             }
             
-            return View(oCardex);
+            return View(oKardex);
         }
 
         // POST: MateriasAlumno/Create
@@ -71,20 +71,20 @@ namespace ControlEscolar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nombre,Apellidos,Edad,Materias")] Cardex oCardex)
+        public async Task<IActionResult> Create([Bind("Nombre,Apellidos,Edad,Materias")] Kardex oKardex)
         {
             List<MateriasAlumno> lstMateriasAlumno = await _NMateriasAlumno.Consultar();
             if (ModelState.IsValid)
             {
                 Alumno oAlumno = new Alumno();
-                oAlumno.Nombre = oCardex.Nombre;
-                oAlumno.Apellidos = oCardex.Apellidos;
-                oAlumno.Edad = oCardex.Edad;
+                oAlumno.Nombre = oKardex.Nombre;
+                oAlumno.Apellidos = oKardex.Apellidos;
+                oAlumno.Edad = oKardex.Edad;
                 Alumno oAlumnoRespuesta = await _NAlumno.Agregar(oAlumno);
 
                 MateriasAlumno oMateriasAlumno = new MateriasAlumno();
                 oMateriasAlumno.IdAlumno = oAlumnoRespuesta.Id;
-                foreach(MateriasEstatus oMateria in oCardex.Materias)
+                foreach(MateriasEstatus oMateria in oKardex.Materias)
                 {
                     if (oMateria.Estatus == true)
                     {
@@ -105,14 +105,14 @@ namespace ControlEscolar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(oCardex);
+            return View(oKardex);
         }
 
         // GET: MateriasAlumno/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            Cardex oCardex = await ConsultarCardex(id);
-            return View(oCardex);
+            Kardex oKardex = await ConsultarKardex(id);
+            return View(oKardex);
         }
 
         // POST: MateriasAlumno/Edit/5
@@ -120,21 +120,21 @@ namespace ControlEscolar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellidos,Edad,Materias")] Cardex oCardex)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellidos,Edad,Materias")] Kardex oKardex)
         {
             List<MateriasAlumno> lstMateriasAlumno = await _NMateriasAlumno.Consultar();
             if (ModelState.IsValid)
             {
                 Alumno oAlumno = new Alumno();
-                oAlumno.Id = oCardex.Id;
-                oAlumno.Nombre = oCardex.Nombre;
-                oAlumno.Apellidos = oCardex.Apellidos;
-                oAlumno.Edad = oCardex.Edad;
+                oAlumno.Id = oKardex.Id;
+                oAlumno.Nombre = oKardex.Nombre;
+                oAlumno.Apellidos = oKardex.Apellidos;
+                oAlumno.Edad = oKardex.Edad;
                 await _NAlumno.Actualizar(oAlumno);
 
                 MateriasAlumno oMateriasAlumno = new MateriasAlumno();
-                oMateriasAlumno.IdAlumno = oCardex.Id;
-                foreach (MateriasEstatus oMateria in oCardex.Materias)
+                oMateriasAlumno.IdAlumno = oKardex.Id;
+                foreach (MateriasEstatus oMateria in oKardex.Materias)
                 {
                     if (oMateria.Estatus == true)
                     {
@@ -155,14 +155,14 @@ namespace ControlEscolar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(oCardex);
+            return View(oKardex);
         }
 
         // GET: MateriasAlumno/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            Cardex oCardex = await ConsultarCardex(id);
-            return View(oCardex);
+            Kardex oKardex = await ConsultarKardex(id);
+            return View(oKardex);
         }
 
         // POST: MateriasAlumno/Delete/5
@@ -174,17 +174,17 @@ namespace ControlEscolar.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<Cardex> ConsultarCardex(int id)
+        private async Task<Kardex> ConsultarKardex(int id)
         {
             Alumno oAlumno = await _NAlumno.Consultar(id);
-            Cardex oCardex = new Cardex();
+            Kardex oKardex = new Kardex();
             List<MateriasAlumno> lstMateriasAlumnos = await _NMateriasAlumno.Consultar();
             List<Materia> lstMaterias = await _NMateria.Consultar();
 
-            oCardex.Id = oAlumno.Id;
-            oCardex.Nombre = oAlumno.Nombre;
-            oCardex.Apellidos = oAlumno.Apellidos;
-            oCardex.Edad = oAlumno.Edad;
+            oKardex.Id = oAlumno.Id;
+            oKardex.Nombre = oAlumno.Nombre;
+            oKardex.Apellidos = oAlumno.Apellidos;
+            oKardex.Edad = oAlumno.Edad;
 
             foreach (Materia materia in lstMaterias)
             {
@@ -198,12 +198,12 @@ namespace ControlEscolar.Controllers
                     if (registro.IdAlumno == id && registro.IdMateria == materia.Id)
                     {
                         oMateriaEstatus.Estatus = true;
-                        oCardex.Creditos += materia.Creditos;
+                        oKardex.Creditos += materia.Creditos;
                     }
                 }
-                oCardex.Materias.Add(oMateriaEstatus);
+                oKardex.Materias.Add(oMateriaEstatus);
             }
-            return oCardex;
+            return oKardex;
         }
     }
 }

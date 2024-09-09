@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControlEscolar.Models.Entidades
 {
@@ -14,7 +15,6 @@ namespace ControlEscolar.Models.Entidades
         public string Nombre { get; set; } = null!;
         public string Apellidos { get; set; } = null!;
         public int Edad { get; set; }
-
         public virtual ICollection<MateriasAlumno> MateriasAlumno { get; set; }
     }
 }
